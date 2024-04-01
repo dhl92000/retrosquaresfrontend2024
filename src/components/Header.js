@@ -11,20 +11,26 @@ const Header = () => {
                 </h1>
             </Link>
 
-            <div>
-                <input type="text" placeholder="Search" class="border-2"></input>
-                <button>Go</button>
+            <div class="text-burntorange">
+                <input type="text" placeholder="Search" class="border-2 rounded-lg p-2 mx-2"></input>
+                <Link>
+                    <button>
+                        <div class="bg-slate-100 rounded-lg p-2">
+                            Go
+                        </div>
+                    </button>
+                </Link>
+
             </div>
 
             <div>
-                <Link to="/upload" class="border-2 p-2 m-4">
+                <Link to="/upload" class="text-burntorange border-2 p-2 m-4 rounded-lg">
                     + Upload
                 </Link>
 
-                <Link to='/login' class="bg-rose-600 text-zinc-50 p-2 m-4">
+                <Link to='/login' class="bg-rose-600 text-zinc-50 p-2 m-4 rounded-lg">
                     Login
                 </Link>
-
             </div>
 
         </div>

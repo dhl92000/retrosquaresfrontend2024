@@ -1,12 +1,18 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
+
+// Pages
+import EditSquarePage from './pages/EditSquarePage';
+import Footer from './components/Footer';
 import Header from './components/Header';
-import Mainpage from './pages/Mainpage';
 import Loginpage from './pages/Loginpage';
-import sampleData from './data/sampledata';
+import Mainpage from './pages/Mainpage';
 import ShowSquarePage from './pages/ShowSquarePage';
 import UploadPage from './pages/UploadPage';
+
+// Components
+import sampleData from './data/sampledata';
 
 // const URL = ""
 
@@ -42,7 +48,11 @@ function App() {
           <Route path='/upload' element={<UploadPage handleUpload={handleUpload}/>} />
           <Route path='/login' element={<Loginpage/>} />
           <Route path='/squares/:id' element={<ShowSquarePage allSquares={sampleData} />} />
+          <Route path='/squares/:id/edit' element={<EditSquarePage allSquares={sampleData} />} />
+
         </Routes>
+
+        <Footer/>
     
       </div>
     )

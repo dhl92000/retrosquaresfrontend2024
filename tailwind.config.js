@@ -7,7 +7,8 @@ module.exports = {
         'burntorange': '#CC5500'
       },
       fontFamily:{
-        'spacemono': ['Space Mono', 'sans-serif']
+        'spacemono': ['Space Mono', 'sans-serif'],
+        'inter': ['Inter', 'san-serif']
       }
     },
   },

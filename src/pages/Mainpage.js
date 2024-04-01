@@ -11,7 +11,7 @@ const Mainpage = (props) => {
     return (
         <div class="
         flex flex-col items-center
-        md:flex-row justify-center items-center
+        md:flex-row flex-wrap justify-center items-center
         ">
             {/* add onclick function to squares */}
             {

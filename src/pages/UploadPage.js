@@ -29,7 +29,7 @@ const UploadPage = (props) => {
     }
 
     return (
-        <div class="flex flex-col  m-10">
+        <div class="flex flex-col w-1/3 ">
             <div>
                 <h1>
                     Create a Retrosquare
@@ -45,7 +45,7 @@ const UploadPage = (props) => {
                 </label>
                 <br></br>
 
-                <input type="file" name="image" value={formData.img_url} onChange={handleChange}/>
+                <input type="file" accept=".jpg, .jpeg, .png" name="image" value={formData.img_url} onChange={handleChange}/>
                 <br></br>
 
                 <button type="submit" class="border-2">Post</button>
