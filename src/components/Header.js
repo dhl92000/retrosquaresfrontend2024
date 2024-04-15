@@ -3,10 +3,10 @@ import { Link } from "react-router-dom"
 const Header = () => {
     return (
         <div class="
-        flex-col  m-4
+        flex flex-col m-4 items-center
         md:flex md:flex-row md:justify-between ">
             <Link to='/'>
-                <h1 class="text-burntorange font-spacemono font-bold text-3xl mx-4">
+                <h1 class="text-burntorange font-spacemono font-bold text-3xl mx-4 p-4">
                     Retrosquares
                 </h1>
             </Link>
@@ -23,7 +23,7 @@ const Header = () => {
 
             </div>
 
-            <div>
+            <div class="m-6">
                 <Link to="/upload" class="text-burntorange border-2 p-2 m-4 rounded-lg">
                     + Upload
                 </Link>

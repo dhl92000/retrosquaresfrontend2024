@@ -1,6 +1,6 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Pages
 import EditSquarePage from './pages/EditSquarePage';
@@ -14,51 +14,80 @@ import UploadPage from './pages/UploadPage';
 // Components
 import sampleData from './data/sampledata';
 
-// const URL = ""
+const URL = "http://ec2-99-79-194-175.ca-central-1.compute.amazonaws.com/"
 
 function App() {
 
-  const [squaresData, getSquaresData] = useState()
+  const [squaresData, setSquaresData] = useState()
 
+  // fetch all squares data
   const getSquares = async () => {
-    const response = await fetch(URL + "/squares")
+    const response = await fetch(URL + 'squares')
     const data = await response.json()
-    getSquaresData(data)
+    setSquaresData(data) 
   }
 
   //handle uploading new square 
-  const handleUpload = async ( square ) => {
-    await fetch(URL + '/squares', {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(square)
+  const handleUpload = async (square) => {
+    await fetch(URL + 'squares', {
+      method: 'post',
+
+      body: square
     })
 
     getSquares()
   }
 
+  //editing squares
+  const handleEdit = async (square) => {
+    await fetch(URL + 'squares/' + square.id, {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(square),
+    })
+    getSquares()
+  }
+
+  // deleting square
+  const deleteSquare = async (square) => {
+    await fetch(URL + 'squares/' + square.id, {
+      method: 'delete'
+    })
+    getSquares()
+  }
+
+  useEffect(() => {
+    getSquares()
+  }, [])
+
+  const Loading = () => {
+    return <h1>Still loading...</h1>
+  }
+
+  const Loaded = () => {
+
     return (
       <div className="App">
-        <Header/>
-  
+        <Header />
+
         <Routes>
-          <Route path='/' element={<Mainpage allSquares={squaresData}/>} />
-          <Route path='/upload' element={<UploadPage handleUpload={handleUpload}/>} />
-          <Route path='/login' element={<Loginpage/>} />
-          <Route path='/squares/:id' element={<ShowSquarePage allSquares={sampleData} />} />
-          <Route path='/squares/:id/edit' element={<EditSquarePage allSquares={sampleData} />} />
+          <Route path='/' element={<Mainpage allSquares={squaresData} />} />
+          <Route path='/upload' element={<UploadPage handleUpload={handleUpload} />} />
+          <Route path='/login' element={<Loginpage />} />
+          <Route path='/squares/:id' element={<ShowSquarePage allSquares={sampleData} squaresData={squaresData} deleteSquare={deleteSquare}/>} />
+          <Route path='/squares/:id/edit' element={<EditSquarePage allSquares={sampleData} squaresData={squaresData} handleEdit={handleEdit} deleteSquare={deleteSquare}/>} />
 
         </Routes>
 
-        <Footer/>
-    
+        <Footer />
+
       </div>
     )
-  
+  }
 
-  // return squares ? Loaded() : Loading()
+  return squaresData ? Loaded() : Loading()
 }
 
 export default App;

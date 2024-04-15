@@ -3,10 +3,12 @@ import Square from '../components/Square'
 import sampleData from '../data/sampledata'
 
 const Mainpage = (props) => {
-    const squares = sampleData
 
-
-    const allSquares = sampleData
+    //const squares = sampleData
+    const squares = props.allSquares
+    
+    //const allSquares = sampleData
+    const allSquares = props.allSquares
 
     return (
         <div class="
