@@ -13,10 +13,12 @@ const Header = () => {
 
             <div class="text-burntorange">
                 <input type="text" placeholder="Search hashtags" class="border-2 rounded-lg p-2 mx-2"></input>
+                
+                {/* add onClick function that makes a fetch request with the param */}
                 <Link>
                     <button>
                         <div class="bg-slate-100 rounded-lg p-2">
-                            Go
+                            Go 
                         </div>
                     </button>
                 </Link>

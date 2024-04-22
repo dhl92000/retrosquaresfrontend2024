@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 // Pages
 import EditSquarePage from './pages/EditSquarePage';
 import Footer from './components/Footer';
+import HashtagResultsPage from './pages/HashtagResultsPage';
 import Header from './components/Header';
 import Loginpage from './pages/Loginpage';
 import Mainpage from './pages/Mainpage';
@@ -19,12 +20,20 @@ const URL = "http://ec2-99-79-194-175.ca-central-1.compute.amazonaws.com/"
 function App() {
 
   const [squaresData, setSquaresData] = useState()
+  const [foundHashtags, setFoundHashtags] = useState()
 
   // fetch all squares data
   const getSquares = async () => {
     const response = await fetch(URL + 'squares')
     const data = await response.json()
     setSquaresData(data) 
+  }
+
+  // function to search hashtags
+  const searchHashtags = async (searchTerm) => {
+    const response = await fetch(URL + 'hashtags/' + searchTerm)
+    const data = await response.json()
+    setFoundHashtags(data)
   }
 
   //handle uploading new square 
@@ -47,6 +56,7 @@ function App() {
       },
       body: JSON.stringify(square),
     })
+    console.log(square)
     getSquares()
   }
 
@@ -78,6 +88,7 @@ function App() {
           <Route path='/login' element={<Loginpage />} />
           <Route path='/squares/:id' element={<ShowSquarePage allSquares={sampleData} squaresData={squaresData} deleteSquare={deleteSquare}/>} />
           <Route path='/squares/:id/edit' element={<EditSquarePage allSquares={sampleData} squaresData={squaresData} handleEdit={handleEdit} deleteSquare={deleteSquare}/>} />
+          <Route path='/hashtags/:params' element={<HashtagResultsPage />} />
 
         </Routes>
 

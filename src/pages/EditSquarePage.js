@@ -66,7 +66,7 @@ const EditSquarePage = (props) => {
                 {/* caption */}
                 <label>Caption:
                     <br></br>
-                    <textarea name="Description" value={squareToEdit.Description} maxLength={140} class="border-2" onChange={(event) => handleChange('squares_description', event.target.value)} placeholder={singleSquare.squares_description}/>
+                    <textarea name="squares_description" value={squareToEdit.squares_description} maxLength={140} class="border-2" onChange={(event) => handleChange('squares_description', event.target.value)} placeholder={singleSquare.squares_description}/>
                 </label>
                 <br></br>
 
