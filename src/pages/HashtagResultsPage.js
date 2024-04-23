@@ -1,27 +1,34 @@
-import { Link, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
+import Square from "../components/Square"
 
-const HashtagResultsPage = (props) => {
+const HashtagResultsPage = ({ foundHashtags }) => {
 
-    const hashtags = props.foundHashtags
-
-    return (
+    const found = () => {
         <div class="
         flex flex-col items-center
-        md:flex-row flex-wrap justify-center items-center
-        ">
-            {/* add onclick function to squares */}
+        md:flex-row flex-wrap justify-center items-center">
+            Found Squares:
             {
-                // squares.map((x) =>
-                //     <Link to={`/squares/${x.id}`} key={x.id}>
-                //         <Square  image={x.img_url} description={x.squares_description} />
-                //     </Link>
-
-                // )
+                foundHashtags.map((x) =>
+                    <Link to={`/squares/${x.id}`} key={x.id}>
+                        <Square image={x.img_url} description={x.squares_description} />
+                    </Link>
+                )
             }
-
-            Found Hashtags
-
         </div>
+    }
+
+    const noResults = () => {
+        <div>
+            Nothing found
+            <Link to='/'>
+                Back Home
+            </Link>
+        </div>
+    }
+
+    return (
+        foundHashtags ? found() : noResults()
     )
 }
 

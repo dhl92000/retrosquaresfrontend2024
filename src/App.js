@@ -15,7 +15,7 @@ import UploadPage from './pages/UploadPage';
 // Components
 import sampleData from './data/sampledata';
 
-const URL = "http://ec2-99-79-194-175.ca-central-1.compute.amazonaws.com/"
+const URL = "https://ec2-99-79-194-175.ca-central-1.compute.amazonaws.com/"
 
 function App() {
 
