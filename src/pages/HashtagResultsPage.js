@@ -19,6 +19,8 @@ const HashtagResultsPage = (props) => {
                 // )
             }
 
+            Found Hashtags
+
         </div>
     )
 }

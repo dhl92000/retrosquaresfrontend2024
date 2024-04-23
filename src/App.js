@@ -20,6 +20,7 @@ const URL = "http://ec2-99-79-194-175.ca-central-1.compute.amazonaws.com/"
 function App() {
 
   const [squaresData, setSquaresData] = useState()
+  const [searchText, setSearchText] = useState('#Search hashtags')
   const [foundHashtags, setFoundHashtags] = useState()
 
   // fetch all squares data
@@ -30,7 +31,7 @@ function App() {
   }
 
   // function to search hashtags
-  const searchHashtags = async (searchTerm) => {
+  const searchHashtagsFunc = async (searchTerm) => {
     const response = await fetch(URL + 'hashtags/' + searchTerm)
     const data = await response.json()
     setFoundHashtags(data)
@@ -80,7 +81,7 @@ function App() {
 
     return (
       <div className="App">
-        <Header searchHashtags={searchHashtags}/>
+        <Header searchHashtagsFunc={searchHashtagsFunc} searchTextState={searchText} setSearchTextState={setSearchText}/>
 
         <Routes>
           <Route path='/' element={<Mainpage allSquares={squaresData}  />} />

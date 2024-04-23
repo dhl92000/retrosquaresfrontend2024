@@ -1,8 +1,8 @@
 import { Link, useParams } from "react-router-dom"
+import { useState } from "react"
+import SearchBar from "./SearchBar"
 
-const Header = (props) => {
-
-    
+const Header = ({searchHashtagsFunc, searchTextState, setSearchTextState}) => {
 
     return (
         <div class="
@@ -14,19 +14,21 @@ const Header = (props) => {
                 </h1>
             </Link>
 
-            <div class="text-burntorange">
-                <input type="text" name="search" placeholder="Search hashtags" class="border-2 rounded-lg p-2 mx-2" />
-                
-                {/* add onClick function that makes a fetch request with the param */}
+            {/* <div class="text-burntorange">
+                <form>
+                    <input type="text" placeholder="Search hashtags" class="border-2 rounded-lg p-2 mx-2" />
+                </form>
+
                 <Link to={'/hashtags/'}>
                     <button  >
                         <div class="bg-slate-100 rounded-lg p-2">
-                            Go 
+                            Go
                         </div>
                     </button>
                 </Link>
+            </div> */}
 
-            </div>
+            <SearchBar searchTextState={searchTextState} setSearchTextState={setSearchTextState} searchHashtagsFunc={searchHashtagsFunc}/>
 
             <div class="m-6">
                 <Link to="/upload" class="text-burntorange border-2 p-2 m-4 rounded-lg">
