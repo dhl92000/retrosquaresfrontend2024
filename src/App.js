@@ -80,15 +80,15 @@ function App() {
 
     return (
       <div className="App">
-        <Header />
+        <Header searchHashtags={searchHashtags}/>
 
         <Routes>
-          <Route path='/' element={<Mainpage allSquares={squaresData} />} />
+          <Route path='/' element={<Mainpage allSquares={squaresData}  />} />
           <Route path='/upload' element={<UploadPage handleUpload={handleUpload} />} />
           <Route path='/login' element={<Loginpage />} />
           <Route path='/squares/:id' element={<ShowSquarePage allSquares={sampleData} squaresData={squaresData} deleteSquare={deleteSquare}/>} />
           <Route path='/squares/:id/edit' element={<EditSquarePage allSquares={sampleData} squaresData={squaresData} handleEdit={handleEdit} deleteSquare={deleteSquare}/>} />
-          <Route path='/hashtags/:params' element={<HashtagResultsPage />} />
+          <Route path='/hashtags/:params' element={<HashtagResultsPage foundHashtags={foundHashtags} />} />
 
         </Routes>
 

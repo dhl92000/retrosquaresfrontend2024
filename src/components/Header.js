@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
-const Header = () => {
+const Header = (props) => {
+
+    
+
     return (
         <div class="
         flex flex-col m-4 items-center
@@ -12,11 +15,11 @@ const Header = () => {
             </Link>
 
             <div class="text-burntorange">
-                <input type="text" placeholder="Search hashtags" class="border-2 rounded-lg p-2 mx-2"></input>
+                <input type="text" name="search" placeholder="Search hashtags" class="border-2 rounded-lg p-2 mx-2" />
                 
                 {/* add onClick function that makes a fetch request with the param */}
-                <Link>
-                    <button>
+                <Link to={'/hashtags/'}>
+                    <button  >
                         <div class="bg-slate-100 rounded-lg p-2">
                             Go 
                         </div>
