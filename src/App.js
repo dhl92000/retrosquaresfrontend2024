@@ -20,7 +20,7 @@ const URL = "http://ec2-99-79-194-175.ca-central-1.compute.amazonaws.com/"
 
 function App() {
   // sample data
-  const [localDev, setLocalDev] = useState("true")
+  const [localDev, setLocalDev] = useState(true)
 
   const [squaresData, setSquaresData] = useState()
   const [searchText, setSearchText] = useState()
@@ -41,7 +41,14 @@ function App() {
   // function to search hashtags
   const searchHashtagsFunc = async (searchTerm) => {
     if (localDev) {
-      setFoundHashtags(sampleData)
+      let newArr = []
+      for (let i = 0; i < sampleData.length; i++) {
+        let result = sampleData[i].hashtags.filter((tag)=> tag === searchTerm)
+        if(result.length > 0){
+          newArr.push(sampleData[i])
+        }
+      }
+      setFoundHashtags(newArr)
     } else {
       const response = await fetch(URL + 'hashtags/' + searchTerm)
       const data = await response.json()
@@ -109,7 +116,7 @@ function App() {
     <div className="App">
       <Header searchHashtagsFunc={searchHashtagsFunc} searchTextState={searchText} setSearchTextState={setSearchText} />
 
-      
+
 
       {squaresData ? Loaded() : Loading()}
 

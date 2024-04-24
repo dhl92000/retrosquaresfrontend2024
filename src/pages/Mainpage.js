@@ -18,7 +18,7 @@ const Mainpage = (props) => {
                 </h4>
             </div>
 
-            <div className="flex flex-col items-center
+            <div className="flex flex-col items-center 
             md:flex-row flex-wrap justify-center items-center">
                 {
                     squares.map((x) =>

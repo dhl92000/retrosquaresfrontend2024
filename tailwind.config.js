@@ -9,6 +9,15 @@ module.exports = {
       fontFamily:{
         'spacemono': ['Space Mono', 'sans-serif'],
         'inter': ['Inter', 'san-serif']
+      },
+      keyframes:{
+        wiggle:{
+          '0%, 100%': {transform: 'rotate(-3deg)'},
+          '50%': {transform: 'rotate(3deg)'},
+        }
+      },
+      animation:{
+        'wiggle': 'wiggle 0.5s ease-out 1',
       }
     },
   },

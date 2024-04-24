@@ -5,8 +5,8 @@ const Square = ({ image, description }) => {
 
     return (
         <div class="
-        h-96 w-80 m-6 bg-slate-100
-        md:h-96 w-80 shadow-xl
+        h-96 w-80 m-6 bg-slate-100 hover:animate-wiggle
+        md:h-96 w-80 shadow-2xl
         ">
             <div className="text-burntorange font-spacemono px-6 pb-2 pt-6">
                 username

@@ -19,7 +19,7 @@ const ShowSquarePage = (props) => {
 
     return (
             <div className="flex flex-col items-center">
-                <div class="h-96 w-80 bg-slate-100 shadow-xl">
+                <div class="h-96 w-80 bg-slate-100 shadow-2xl">
                     {/* username */}
                     <div class="text-burntorange font-spacemono px-6 pb-2 pt-6">
                         username
