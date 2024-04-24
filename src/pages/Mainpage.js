@@ -1,17 +1,14 @@
 import { Link } from "react-router-dom"
 import Square from '../components/Square'
-import sampleData from '../data/sampledata'
+//import sampleData from '../data/sampledata'
 
 const Mainpage = (props) => {
 
     //const squares = sampleData
     const squares = props.allSquares
-    
-    //const allSquares = sampleData
-    const allSquares = props.allSquares
 
     return (
-        <div class="
+        <div className="
         flex flex-col items-center
         md:flex-row flex-wrap justify-center items-center
         ">

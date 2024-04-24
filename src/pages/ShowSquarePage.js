@@ -10,7 +10,8 @@ const ShowSquarePage = (props) => {
     const id = params.id
     // function using find() to return the first element matching the condition
     const singleSquare = data.find((square) => String(square.id) === id )
-    
+    let parsedDescription = singleSquare.squares_description.split(' ')
+
     const deleteSquare = () => {
         props.deleteSquare(singleSquare)
         navigate(`/`)
@@ -28,17 +29,22 @@ const ShowSquarePage = (props) => {
                     <div class="h-64 w-64 bg-orange-300 mx-6 overflow-hidden " >
                         {/* test image */}
                         {/* <img src={data[id].img_url} class="" /> */}
-                        {<img src={singleSquare.img_url} />}
+                        {<img src={singleSquare.img_url} alt="A single square"/>}
                     </div>
 
                     {/* squares description */}
 
                     <div class="w-80 bg-slate-50">
                         <div class="font-inter text-neutral-500 m-6 py-6">
-                            {/* test description */}
-                            {/* {data[id].squares_description} */}
-                            {singleSquare.squares_description}
-
+                            {
+                                parsedDescription.map((x) => {
+                                    if(x[0] !== '#'){
+                                        return x + ' '
+                                    } else {
+                                        return <Link to={`/hashtags/${x}`} className="text-blue-600"> {x} </Link>
+                                    }
+                                })
+                            }
                         </div>
                     </div>
                 </div>

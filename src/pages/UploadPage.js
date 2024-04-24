@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 const UploadPage = (props) => {
@@ -17,11 +16,11 @@ const UploadPage = (props) => {
     // }
 
     //state holding data for request body to be sent
-    const [formData, setFormData] = useState({
-        //keyName: "",
-        Description: "",
-        image: ""
-    })
+    // const [formData, setFormData] = useState({
+    //     keyName: "",
+    //     Description: "",
+    //     image: ""
+    // })
 
     // function for form input
     // const handleChange = (event) => {

@@ -8,18 +8,8 @@ const EditSquarePage = (props) => {
     const data = props.squaresData //props.allSquares
 
     const params = useParams()
-    const id = params.id 
-    let currentSquare = data[id]
+    const id = params.id
     const singleSquare = data.find((square) => String(square.id) === id )
-
-    //const [imagePreview, setImagePreview] = useState(singleSquare.img_url)
-
-    // const [squareToEdit, setSquareToEdit] = useState({
-    //     squares_description: '',
-    //     //img_url: ''
-    //     //hashtags
-    //     // do i need id here?
-    // })
 
     const [squareToEdit, setSquareToEdit ] = useState(singleSquare)
 
@@ -39,11 +29,6 @@ const EditSquarePage = (props) => {
         navigate(`/squares/${singleSquare.id}/`)
     }
 
-    const deleteSquare = () => {
-        props.deleteSquare()
-        navigate(`/`)
-    }
-
     return (
         <div class="flex flex-col items-center m-10">
             <div>
@@ -57,7 +42,7 @@ const EditSquarePage = (props) => {
 
                 {/* image preview */}
                 <div class="h-64 w-64 bg-orange-300 overflow-hidden ">
-                    <img src={singleSquare.img_url} alt="Preview Uploaded Image" id="file-preview" />
+                    <img src={singleSquare.img_url} alt="Preview Upload" id="file-preview" />
                 </div>
 
                 {/* image upload

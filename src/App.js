@@ -15,13 +15,14 @@ import UploadPage from './pages/UploadPage';
 // Components
 import sampleData from './data/sampledata';
 
-const URL = "https://ec2-99-79-194-175.ca-central-1.compute.amazonaws.com/"
+// const testURL = "http://ec2-99-79-194-175.ca-central-1.compute.amazonaws.com/"
+ const URL = "http://ec2-99-79-194-175.ca-central-1.compute.amazonaws.com/"
 
 function App() {
 
   const [squaresData, setSquaresData] = useState()
-  const [searchText, setSearchText] = useState('#Search hashtags')
-  const [foundHashtags, setFoundHashtags] = useState()
+  const [searchText, setSearchText] = useState()
+  const [foundHashtags, setFoundHashtags] = useState([])
 
   // fetch all squares data
   const getSquares = async () => {
@@ -33,8 +34,14 @@ function App() {
   // function to search hashtags
   const searchHashtagsFunc = async (searchTerm) => {
     const response = await fetch(URL + 'hashtags/' + searchTerm)
+    console.log(response)
     const data = await response.json()
-    setFoundHashtags(data)
+    
+    if( Array.isArray(data) ){
+      setFoundHashtags(data)
+    } else{
+      setFoundHashtags([])
+    }
   }
 
   //handle uploading new square 
