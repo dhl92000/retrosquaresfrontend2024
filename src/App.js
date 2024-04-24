@@ -16,9 +16,11 @@ import UploadPage from './pages/UploadPage';
 import sampleData from './data/sampledata';
 
 // const testURL = "http://ec2-99-79-194-175.ca-central-1.compute.amazonaws.com/"
- const URL = "http://ec2-99-79-194-175.ca-central-1.compute.amazonaws.com/"
+const URL = "http://ec2-99-79-194-175.ca-central-1.compute.amazonaws.com/"
 
 function App() {
+  // sample data
+  const [localDev, setLocalDev] = useState("true")
 
   const [squaresData, setSquaresData] = useState()
   const [searchText, setSearchText] = useState()
@@ -26,21 +28,28 @@ function App() {
 
   // fetch all squares data
   const getSquares = async () => {
-    const response = await fetch(URL + 'squares')
-    const data = await response.json()
-    setSquaresData(data) 
+    if (localDev) {
+      setSquaresData(sampleData)
+    } else {
+      const response = await fetch(URL + 'squares')
+      const data = await response.json()
+      setSquaresData(data)
+    }
+
   }
 
   // function to search hashtags
   const searchHashtagsFunc = async (searchTerm) => {
-    const response = await fetch(URL + 'hashtags/' + searchTerm)
-    console.log(response)
-    const data = await response.json()
-    
-    if( Array.isArray(data) ){
-      setFoundHashtags(data)
-    } else{
-      setFoundHashtags([])
+    if (localDev) {
+      setFoundHashtags(sampleData)
+    } else {
+      const response = await fetch(URL + 'hashtags/' + searchTerm)
+      const data = await response.json()
+      if (Array.isArray(data)) {
+        setFoundHashtags(data)
+      } else {
+        setFoundHashtags([])
+      }
     }
   }
 
@@ -48,10 +57,8 @@ function App() {
   const handleUpload = async (square) => {
     await fetch(URL + 'squares', {
       method: 'post',
-
       body: square
     })
-
     getSquares()
   }
 
@@ -81,32 +88,34 @@ function App() {
   }, [])
 
   const Loading = () => {
-    return <h1>Still loading...</h1>
+    return <h1>Still Loading</h1>
   }
 
   const Loaded = () => {
-
     return (
-      <div className="App">
-        <Header searchHashtagsFunc={searchHashtagsFunc} searchTextState={searchText} setSearchTextState={setSearchText}/>
+      <Routes>
+        <Route path='/' element={<Mainpage allSquares={squaresData} />} />
+        <Route path='/upload' element={<UploadPage handleUpload={handleUpload} />} />
+        <Route path='/login' element={<Loginpage />} />
+        <Route path='/squares/:id' element={<ShowSquarePage allSquares={sampleData} squaresData={squaresData} deleteSquare={deleteSquare} />} />
+        <Route path='/squares/:id/edit' element={<EditSquarePage allSquares={sampleData} squaresData={squaresData} handleEdit={handleEdit} deleteSquare={deleteSquare} />} />
+        <Route path='/hashtags/:params' element={<HashtagResultsPage foundHashtags={foundHashtags} />} />
 
-        <Routes>
-          <Route path='/' element={<Mainpage allSquares={squaresData}  />} />
-          <Route path='/upload' element={<UploadPage handleUpload={handleUpload} />} />
-          <Route path='/login' element={<Loginpage />} />
-          <Route path='/squares/:id' element={<ShowSquarePage allSquares={sampleData} squaresData={squaresData} deleteSquare={deleteSquare}/>} />
-          <Route path='/squares/:id/edit' element={<EditSquarePage allSquares={sampleData} squaresData={squaresData} handleEdit={handleEdit} deleteSquare={deleteSquare}/>} />
-          <Route path='/hashtags/:params' element={<HashtagResultsPage foundHashtags={foundHashtags} />} />
-
-        </Routes>
-
-        <Footer />
-
-      </div>
+      </Routes>
     )
   }
 
-  return squaresData ? Loaded() : Loading()
+  return (
+    <div className="App">
+      <Header searchHashtagsFunc={searchHashtagsFunc} searchTextState={searchText} setSearchTextState={setSearchText} />
+
+      
+
+      {squaresData ? Loaded() : Loading()}
+
+      <Footer />
+    </div>
+  )
 }
 
 export default App;

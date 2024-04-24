@@ -12,8 +12,8 @@ const Square = ({ image, description }) => {
                 username
             </div>
 
-            <div className="h-64 w-64 mx-6 overflow-hidden " >
-                <img src={image} alt="Square"  />
+            <div className="h-64 w-64 mx-6 overflow-hidden relative" >
+                <img className="absolute bottom-0" src={image} alt="Square" />
             </div>
 
             <div className="w-80 bg-slate-50">
