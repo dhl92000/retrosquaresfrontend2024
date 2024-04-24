@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
-const Square = ({ image, description }) => {
+const Square = ({ image, description, searchHashtagsFunc }) => {
 
     let parsedDescription = description.split(' ')
+    //setFoundHashtag()
 
     return (
         <div class="
@@ -23,7 +24,11 @@ const Square = ({ image, description }) => {
                             if(x[0] !== '#'){
                                 return x + ' '
                             } else {
-                                return <Link to={`/hashtags/${x}`} className="text-blue-600"> {x} </Link>
+                                let xPath = x.substring(1)
+                                
+                                return <Link to={`/hashtags/${xPath}`} onClick={()=>searchHashtagsFunc(xPath)} className="text-blue-600"> {x}</Link>
+                                // Production
+                                // return <Link to={`/hashtags/${x}`} className="text-blue-600"> {x} </Link>
                             }
                         })
                     }

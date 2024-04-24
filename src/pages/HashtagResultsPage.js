@@ -2,7 +2,7 @@ import { Link} from "react-router-dom"
 import Square from "../components/Square"
 
 const HashtagResultsPage = ({ foundHashtags }) => {
-    
+
     const found = () => {
         return (
             <div className="
@@ -15,6 +15,7 @@ const HashtagResultsPage = ({ foundHashtags }) => {
                         </Link>
                     )
                 }
+                
             </div>
         )
     }

@@ -1,10 +1,11 @@
 import { Link, useParams, useNavigate } from "react-router-dom"
 
 
-const ShowSquarePage = (props) => {
+const ShowSquarePage = ({ searchHashtagsFunc, sampleData, squaresData, deleteSquare}) => {
     const navigate = useNavigate()
-    // const data = props.allSquares
-    const data = props.squaresData
+
+    // const data = squaresData
+    const data = sampleData
 
     const params = useParams()
     const id = params.id
@@ -12,10 +13,10 @@ const ShowSquarePage = (props) => {
     const singleSquare = data.find((square) => String(square.id) === id )
     let parsedDescription = singleSquare.squares_description.split(' ')
 
-    const deleteSquare = () => {
-        props.deleteSquare(singleSquare)
-        navigate(`/`)
-    }
+    // const deleteSquare = () => {
+    //     deleteSquare(singleSquare)
+    //     navigate(`/`)
+    // }
 
     return (
             <div className="flex flex-col items-center">
@@ -41,7 +42,11 @@ const ShowSquarePage = (props) => {
                                     if(x[0] !== '#'){
                                         return x + ' '
                                     } else {
-                                        return <Link to={`/hashtags/${x}`} className="text-blue-600"> {x} </Link>
+                                        let xPath = x.substring(1)
+                                        
+                                        return <Link to={`/hashtags/${xPath}`} onClick={()=>searchHashtagsFunc(xPath)} className="text-blue-600"> {x} </Link>
+                                        // Production
+                                        // return <Link to={`/hashtags/${x}`} className="text-blue-600"> {x} </Link>
                                     }
                                 })
                             }
