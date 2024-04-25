@@ -12,7 +12,7 @@ Link to project: https://retrosquares.netlify.app/
 
 **Models:**
 Squares and Hashtag model, and junction table displaying Many-to-Many relationship
-![image](https://github.com/dhl92000/retrosquaresfrontend2024/assets/135692247/2a41d17e-2a90-4cb3-b527-908ab7987379)
+![image](https://github.com/dhl92000/retrosquaresfrontend2024/assets/135692247/a7fa233a-4dfd-49a2-8644-63d16551615e)
 
 
 I created this project because I wanted to learn about deploying applications on Amazon Web Services(AWS), and querying Many-to-Many relationships from a database like MySQL. 
