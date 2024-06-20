@@ -35,7 +35,6 @@ function App() {
       const data = await response.json()
       setSquaresData(data)
     }
-
   }
 
   // function to search hashtags
@@ -43,8 +42,8 @@ function App() {
     if (localDev) {
       let newArr = []
       for (let i = 0; i < sampleData.length; i++) {
-        let result = sampleData[i].hashtags.filter((tag)=> tag === searchTerm)
-        if(result.length > 0){
+        let result = sampleData[i].hashtags.filter((tag) => tag === searchTerm)
+        if (result.length > 0) {
           newArr.push(sampleData[i])
         }
       }
@@ -78,7 +77,6 @@ function App() {
       },
       body: JSON.stringify(square),
     })
-    console.log(square)
     getSquares()
   }
 
