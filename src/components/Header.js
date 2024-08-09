@@ -6,7 +6,8 @@ const Header = ({ searchHashtagsFunc, searchTextState, setSearchTextState }) => 
     return (
         <>
             <div className="text-center text-xs font-spacemono text-slate-400 m-4">
-                <span className="bg-amber-100"> PS. You are visiting a local version of the app ;) Thanks for visiting! </span>
+                <span className="bg-amber-100"> PS. This version of the app is disconnected from the backend and displaying static assets ;) Thanks for visiting! </span>
+                
             </div>
             <div className="
         flex flex-col m-4 items-center

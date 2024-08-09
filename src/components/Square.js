@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+
 const Square = ({ image, description, searchHashtagsFunc }) => {
 
     let parsedDescription = description.split(' ')
